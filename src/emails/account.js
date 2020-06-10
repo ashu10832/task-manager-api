@@ -20,9 +20,7 @@ const sendCancelEmail = (email,name) =>{
         to:email,
         from:'ashu.gupta.dce@gmail.com',
         subject:'We are sad',
-        text: `Hey, ${name}. We saw that you deleted your account recently.
-         Sorry to see you go. I hope to see you back soon. 
-         Adios Amigo! `
+        text: `Hey, ${name}. We saw that you deleted your account recently.Sorry to see you go. I hope to see you back soon. Adios Amigo! `
     })
 }
 
