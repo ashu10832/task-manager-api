@@ -53,7 +53,10 @@ const userSchema = new mongoose.Schema({
             type:String,
             required:true
         }
-    }]
+    }],
+    avatar:{
+        type:Buffer
+    }
 }, {
     timestamps:true
 })
@@ -102,7 +105,7 @@ userSchema.statics.findByCredentials = async (email,password) =>{
 
 userSchema.methods.generateAuthToken = async function(){
     const user = this
-    const token = await jwt.sign({_id:user._id.toString()},'thisismywebapi',{
+    const token = await jwt.sign({_id:user._id.toString()},JWT_SECRET,{
         expiresIn:'7 days'
     })
     user.tokens = user.tokens.concat({token})
@@ -116,6 +119,7 @@ userSchema.methods.toJSON = function(){
 
     delete userObject.password
     delete userObject.tokens
+    delete userObject.avatar
 
     return userObject
 }
