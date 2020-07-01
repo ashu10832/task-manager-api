@@ -57,7 +57,7 @@ router.patch('/users/me', auth , async (req,res)=>{
 // Delete my user profile
 router.delete('/users/me', auth ,async (req,res)=>{
     try {
-        console.log(req.user)
+        //console.log(req.user)
         const user = await req.user.remove()
         sendCancelEmail(user.email,user.name)
         res.send(req.user)
