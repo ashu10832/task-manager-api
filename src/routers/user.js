@@ -11,6 +11,7 @@ const router = new express.Router()
 
 // Create a new user
 router.post('/users',async (req,res)=>{
+    console.log('New Signup Request')
     const user = new User(req.body)
     try {
         await user.save()
@@ -70,9 +71,12 @@ router.delete('/users/me', auth ,async (req,res)=>{
 
 // Login
 router.post('/users/login',async (req,res)=>{
+    console.log('New Login Request:' + Date.now())
+    console.log(req.body)
     try {
         const user = await User.findByCredentials(req.body.email,req.body.password)
         const token = await user.generateAuthToken()
+
         res.send({user,token})
 
     } catch (error) {
